@@ -1,2 +1,2 @@
-# sipc-ull
-Prácticas Sistemas de Interacción Persona Computador
+# Sistemas de Interacción Persona-Computador
+Prácticas Sistemas de Interacción Persona Computador (SIPC, ULL)
