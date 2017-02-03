@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<!--Omar Mendo Mesa-->
+<html lang="es" ng-App="myApp">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="Technozz, Tecnologia, Aficiones, Tienda, Chat"> <!-- Incluimos los keywords para las búsquedas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="Omar" content="">
+
+    <title>Technozz</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="public/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="public/css/small-business.css" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+  <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script> <!-- AngularJS -->
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script> <!-- JQuery -->
+<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script> <!-- Firebase -->
+
+</head>
+
+<body onload="javascript:cambiarPestanna(pestanas,pestana1);" ng-controller="customersCtrl">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container, col-md-12">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img src="public/icon.png" alt="">
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">Información</a>
+                    </li>
+                    <li>
+                        <a href="#">Servicios</a>
+                    </li>
+                    <li>
+                        <a href="#">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Heading Row -->
+        <div class="row">
+            <div class="col-md-12" align="center">
+                <img class="img-responsive img-rounded" src="public/header.jpg" alt="">
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+
+        <!-- Content Row -->
+        <div class="row">
+            <div class="col-md-3">
+
+            <h3>Tienda 2.0</h3>
+            <p>Esta tienda surgió de la idea de un joven empresario de pueblo, el cual no tenía ningún establecimiento de tecnología cercano, por lo que decidió realizar un negocio para que cualquier persona tenga cualquier producto a su alcance.</p>
+
+        <BR></BR>
+        <h3>Recomendaciones y sugerencias </h3>
+        <div id="tabla11">En este apartado los usuarios son libres de proponer a los desarroladores de la web y a el personal de mantenimeinto mejoras e ideas para implementar sobre la web,mejorando asi la experiencia del usuario.</div>
+        <BR></BR>
+        <textarea id="textarea" placeholder="Introduzca su comentario" rows="10" size="none"></textarea>
+
+
+
+            </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-6">
+                <h2>Bienvenidos a Technozz</h2>
+                <p>Aquí encontrarás las últimas novedades en el mundo de la
+                    tecnología y el entorno geek, ya sea electrónica de consumo,
+                    gadgets, ordenadores, etc...</p>
+                <p>Además medienate estos botones podrás indicarnos que te ha parecido nuestra página y nuestro servicio.</p>
+                <BR></BR>
+              <div class="col-md-2" align="center">
+                    <input type="button" value="Me gusta" onclick="Mostrarsmile()" />
+                    <div id="smile" style="visibility:hidden"></div>
+              </div>
+                    <div class="col-md-4" align="center">
+              <input type="button" value="No me gusta nada esta página" onclick="Mostrarsad()" />
+              <div id="sad" style="visibility:hidden"></div>
+             </div>
+
+
+
+                   <br></br>
+                   <br></br>
+
+                <div id="pestanas">
+                    <ul id="lista">
+                    <li id="pestana1"><a href='javascript:cambiarPestanna(pestanas,pestana1);'>Información obligatoria</a></li>
+                    <li id="pestana2"><a href='javascript:cambiarPestanna(pestanas,pestana2);'>Información ++</a></li>
+                    <li id="pestana3"><a href='javascript:cambiarPestanna(pestanas,pestana3);'>Detalles</a></li>
+                    </ul>
+                </div>
+
+               <div id="contenidopestanas">
+
+
+               <div id="cpestana1">
+               <form name="formulario" class="formulario" id="formulario" onsubmit="return signup(this)">
+
+                        <h6>Nombre:</br> <input type="text" ng-model="name" id="nombre">
+
+                        </br></br>Apellidos:</br><input type="text" ng-model="lastname"  id="apellidos">
+
+                        </br></br>Email:</br><input type="text" ng-model="mail" id="email" placeholder="example@mail.x">
+
+                        </br></br>Teléfono:</br><input type="text" ng-model="telephone" id="telefono" placeholder="xxxxxxxxx">
+
+                        </br></br>Tipo de entrada:</h6>
+                        <h6 id="entradas">
+
+                        <button type="submit" class="btn btn-success" id="signup-button" onclick="comprobar()" >Enviar</button>
+                        <button type="reset" >Borrar Datos</button>
+                        </form>
+                        <script>
+                       // var signupform = document.getElementById('formulario');
+                        function signup(formObj){
+
+                            var myFireBaseRef= new Firebase("https://formu2-63aea.firebaseio.com/");
+                            myFireBaseRef.push ({
+                                Nombre: formObj.nombre.value,
+                                Apellidos: formObj.apellidos.value,
+                                Email: formObj.email.value,
+                            });
+                        }
+                        </script>
+              </div>
+
+
+                    <div id="cpestana2">
+
+                    <H3>Nota explicativa:</H3>
+                    <p><b>Esta sección de la página va destinada a que el usuario nos informe sobre su persona, la cual no es obligatoria cumplimentar.</b></p>
+
+                    <TABLE  BORDER="1" CELLSPACING="5" CELLPADDING="10">
+				           <TR>
+				           <font face="roman" color="black" size="2"><I><B>- Móvil*:</B></I>¿Qué móvil usa actualmente?</font>
+				              <TD><B style="font-size:110%;">&nbsp;Móvil&nbsp;</B></TD>
+				              <TD><INPUT TYPE="text" ID="DEPORTE" NAME="DEPORTE" size="50"></TD>
+				           </TR>
+                           <BR></BR>
+				           <TR>
+				           <font face="roman" color="black" size="2"><I><B>- Ordenador*:</B></I>¿Qué ordenador usa en la actualidad? ¿Sobremesa o portátil?</font>
+				              <TD><B style="font-size:110%;">&nbsp;Ordenador &nbsp;</B></TD>
+				              <TD><INPUT TYPE="text" ID="MUSICA" NAME="MUSICA" size="50"></TD>
+				           </TR>
+ 						   <BR></BR>
+				           <TR>
+				           <font face="roman" color="black" size="2"><I><B>- Preferencias*:</B></I>¿Productos de primeras marcas o low cost?</font>
+				              <TD><B style="font-size:110%;">&nbsp;Preferencias&nbsp;</B></TD>
+				              <TD><INPUT TYPE="text" ID="HOB" NAME="HOB" size="50"></TD>
+				           </TR>
+ 						   <BR></BR>
+				           <TR>
+				              <font face="roman" color="black" size="2"><I><B>- Estudios*:</B></I>¿Algunos estudios relacionados con el mundo tecnológico? (ingeniería informatica, etc...)</font></div>
+				              <TD><B style="font-size:110%;">&nbsp;Estudios&nbsp;</B></TD>
+				              <TD><INPUT TYPE="text" ID="EST" NAME="EST" size="50"></TD>
+				           </TR>
+                           <BR></BR>
+				           <TR>
+				              <font face="roman" color="black" size="2"><I><B>- Series*:</B></I>¿Qué tipo de series ve actualmente?</font></div>
+				              <TD><B style="font-size:110%;">&nbsp;Series&nbsp;</B></TD>
+				              <TD><INPUT TYPE="text" ID="DEP" NAME="DEP" size="50"></TD>
+				           </TR>
+  							<BR></BR>
+				           <TR>
+				           <font face="roman" color="black" size="2"><I><B>- Silla*:</B></I>¿Tiene una silla de calidad o cualquiera le sirve para realizar sus tareas?</font>
+				              <TD><B style="font-size:110%;">&nbsp;Silla&nbsp;      </B></TD>
+				              <TD><INPUT TYPE="text" ID="COL" NAME="COL" size="50"></TD>
+				           </TR>
+                           <BR></BR>
+				           <TR>
+				           <font face="roman" color="black" size="2"><I><B>- Juegos*:</B></I>¿A qué videojuegos juega asiduamente?</font>
+				              <TD><B style="font-size:110%;">&nbsp;Juegos&nbsp;      </B></TD>
+				              <TD><INPUT TYPE="text" ID="GAME" NAME="GAME" size="50"></TD>
+				           </TR>
+				           <BR></BR>
+
+				    </TABLE>
+
+                    </div>
+
+
+             <div id="cpestana3">
+
+              <p>Aquí aparecen los datos introducidos por el usuario en el formulario requerido: </p>
+
+						  <h4>Nombre: {{name}}</h4>
+			              <h4>Apellidos: {{lastname}}</h4>
+			              <h4>E-mail: {{mail}}</h4>
+
+                    </div>
+
+                </div>
+
+             <BR></BR>
+
+            <div id="pestanas2">
+                    <ul id="lista">
+                    <li id="pestana11"><a href='javascript:cambiarPestanna(pestanas2,pestana11);'>Chat</a></li>
+                    <li id="pestana22"><a href='javascript:cambiarPestanna(pestanas2,pestana22);'>Información</a></li>
+                    </ul>
+            </div>
+
+               <div id="contenidopestanas2">
+
+
+               <div id="cpestana11">
+
+               <h2><b>CHAT PARTICIPES</b></h2>
+                            <p id='messagesDiv'></p>
+                            <label id="label_user">USUARIO</label>
+                            <label id="label_message">MENSAJE</label></br>
+                            <input type='text' id='nameInput' placeholder='name1234'>
+                            <input type='text' id='messageInput' placeholder='¿Tienes algo que contarnos?'>
+                            <script>
+                            var myDataRef = new Firebase('https://formu2-63aea.firebaseio.com/');
+                            $('#messageInput').keypress(function (e) {
+                                if (e.keyCode == 13) {
+                                  var name = $('#nameInput').val();
+                                  var text = $('#messageInput').val();
+                                  myDataRef.push({name: name, text: text});
+                                  $('#messageInput').val('');
+                                }
+                              });
+                              myDataRef.on('child_added', function(snapshot) {
+                                var message = snapshot.val();
+                                displayChatMessage(message.name, message.text);
+                              });
+
+                              function displayChatMessage(name, text) {
+                                $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
+                                $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
+                              };
+                            </script>
+
+              </div>
+
+
+                    <div id="cpestana22">
+
+                    <H3>Información del Chat: </H3>
+                    <BR></BR>
+                    <font face="roman" color="black" size="3"><I><p><b>Esta sección de la página va destinada a que diferentes usuarios de la página se puedan comunicar directamente y hablar entre ellos de las cosas que quieran sin ningun tipo de restrición siempre y cuando se respeten las normas.</b></p>
+                    <p><B>Normas:</B></p></I></font>
+
+                    <TABLE  BORDER="1" CELLSPACING="5" CELLPADDING="10">
+				          <TR><p>->No está permitido compartir enlaces a páginas de terceros.</p></TR>
+				          <TR><p>->No está permitido compartir contenido con ©.</p></TR>
+				          <TR><p>->No está permitido usar nombres falsos ni nicknames ofensivos.</p></TR>
+				          <TR><p>->No está permitido insultar o utilizar un lenguaje poco adecuado.</p></TR>
+
+                          <BR></BR>
+                          <TR><p><B>* Ante el incumplimiento de cualquiera de estas normas el equipo de administración de la página tendrá poder absoluto para explulsar a la persona relacionadacon los hechos de la página</B></p></TR>
+
+                           <BR></BR>
+                    </TABLE>
+
+                        </div>
+
+                          <div id="cpestana33">
+
+                            <h4><b>FICHERO JSON</b></h4>
+                            <ul>
+                              <li ng-repeat="x in names">
+                                {{ x.Name + ', ' + x.Country }}
+                              </li>
+                            </ul>
+
+                            <script>
+                            var app = angular.module('myApp', []);
+                            app.controller('customersCtrl', function($scope, $http) {
+                                $http.get("http://www.w3schools.com/angular/customers.php")
+                                .success(function(response) {$scope.names = response.records;});
+                            });
+                            </script>
+                          </div>
+
+
+                    </div>
+
+
+
+
+
+            </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-3">
+                <h3>Contacto</h3>
+                <br></br>
+                <B><I>Sección de contacto con la página:</I></B>
+
+                <div id="x"><B>Telefono administración:</B>&nbsp; 922543785 &nbsp;</div>
+                <div id="z"><B>Dirección email:</B>&nbsp;info@technozz.es &nbsp;</div>
+                <div id="w"><B>Teléfono móvil: </B></B>&nbsp;664565465 &nbsp;</div>
+
+            </div>
+            <!-- /.col-md-4 -->
+        </div>
+        <!-- /.row -->
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>&copy; Omar Mendo Mesa SIPC 16/17</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="public/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="public/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="public/js/Practica2.js"></script>
+
+
+</body>
+
+</html>
