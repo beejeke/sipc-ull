@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:complexType name="CURRICULUM">	
+	<xsd:sequence>
+		<xsd:element name="NOMBRE" type="xsd:string"/>
+		<xsd:element name="DNI" type="xsd:string"/>
+		<xsd:element name="TELEFONO" type="xsd:string"/>
+		<xsd:element name="CORREO" type="xsd:string"/>
+		<xsd:complexType name="DIRECCION">
+			<xsd:sequence>
+				<xsd:element name="CALLE" type="xsd:string"/>
+				<xsd:element name="NUMERO" type="phoneNumber"/>
+				<xsd:simpleType name="phoneNumber">
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value="{000-999} {00-99} {00-99} {00-99}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+				<xsd:element name="CP" type="xsd:integer"/>
+				<xsd:element name="LOCALIDAD" type="xsd:string"/>
+				<xsd:element name="PROVINCIA" type="xsd:string"/>
+				<xsd:element name="PAIS" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+		<xsd:complexType name="FORMACION">
+			<xsd:sequence>
+					<xsd:complexType name="ESTUDIOS"/>
+					
+					<xsd:element name="BACHILLER" type="xsd:string"/>
+					<xsd:element name="UNIVERSIDAD" type="xsd:string"/>
+					<xsd:element name="MASTER" type="xsd:string"/>
+					</xsd:complexType>
+					
+					<xsd:element name="IDIOMAS" type="xsd:string"/>
+					<xsd:element name="CURSOS" type="xsd:string"/>
+					
+				</xsd:sequence>
+		</xsd:complexType>
+		<xsd:complexType name="EXPERIENCIALABORAL">
+			<xsd:sequence>
+					<xsd:element name="EXPERIENCIA" type="xsd:string"/>
+					
+					
+				</xsd:sequence>
+		</xsd:complexType>
+		
+		<xsd:complexType name="SKILLS">
+			<xsd:sequence>
+					<xsd:element name="PERSONALES" type="xsd:string"/>
+					<xsd:element name="PROFESIONALES" type="xsd:string"/>
+				
+					
+				</xsd:sequence>
+		</xsd:complexType>
+		
+		<xsd:complexType name="ESPECIALIDAD">
+			<xsd:sequence>
+					<xsd:element name="ESPECIALIZACION" type="xsd:string"/>
+				
+				</xsd:sequence>
+		</xsd:complexType>
+		
+		
+		
+	</xsd:sequence>
+</xsd:complexType>
+
+</xsd:schema>
