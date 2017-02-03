@@ -1,5 +1,5 @@
 # Sistemas de Interacción Persona-Computador
-Prácticas Sistemas de Interacción Persona Computador (SIPC, ULL)
+:white_check_mark: Prácticas Sistemas de Interacción Persona Computador (SIPC, ULL) :white_check_mark:
 
 ### Prácticas Web
 En este repositorio estarán subidas las prácticas de la asignatura del *módulo web*
